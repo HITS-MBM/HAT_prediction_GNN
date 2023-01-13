@@ -169,19 +169,11 @@ def make_model(inputs: list = None,
         for _ in range(mlp_rep):
             main_output = MLP(**output_mlp)(out)
             out = ks.layers.Concatenate(axis=-1)([main_output, out])
-        tf.print('\nall nodes: ', n.shape)                      # [None, None, 128]
-        tf.print('node shape: ', node_radical_index.shape)      # [None, 2]
-        tf.print('\ngathered nodes: ', h_atoms_out.shape)       # [None, None, 256]
-        tf.print('\nrbf:       ', rbf.shape)                    # [None, None, 20]
-        tf.print('edge shape: ', edge_radical_index.shape)      # [None, 1]
-        tf.print('\nconcatenated: ', out.shape) # [None, None, 258]
-        tf.print('\npooled: ', out.shape) # [None, 257]
 
     else:
         raise ValueError("Unsupported graph embedding for mode `PAiNN`")
 
     model = tf.keras.models.Model(inputs=[node_input, xyz_input, bond_index_input, 
                                     node_radical_index, edge_radical_index, edge_dist],
-                                    # aux_desc],
                                     outputs=main_output)
     return model
