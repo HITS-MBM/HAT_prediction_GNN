@@ -7,12 +7,12 @@ from tqdm.autonotebook import tqdm
 #%% ----- Parameters -----
 #########
 datasets = ['dataset_2208_synth', 'dataset_2208_traj']
-base_name_dir = "2208_full_new_enc"
+base_name_dir = "2208_full"
 model_glob = "*"
 #########
 
-data_root = Path("/hits/basement/mbm/riedmiki/structures/KR0008/")
-model_root = Path("/hits/fast/mbm/riedmiki/nn/barrier_gnn_out/logs_2.1")
+data_root = Path("/.") # Path to dir containing datasets
+model_root = Path("/.") # Path to models or base_name_dir of models
 
 #%% ----- Load models -----
 if base_name_dir is not None:
@@ -40,7 +40,7 @@ print("Loading Data..")
 test_ds, energies, scale_t, meta_ds, metas_masked = create_meta_dataset_predictions(
     meta_files=test_files,
     batch_size=128,
-    opt=False
+    opt=False           # load optimized data or not
 )
 print("Data loaded!")
 
