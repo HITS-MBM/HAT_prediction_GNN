@@ -8,15 +8,14 @@ from tqdm.autonotebook import tqdm
 #########
 datasets = ['dataset_2208_synth', 'dataset_2208_traj']
 base_name_dir = "2208_full"
-model_glob = "*"
+model_glob = "full_*"
+data_root = Path("/.") # Path to dir containing datasets
 #########
 
-data_root = Path("/.") # Path to dir containing datasets
-model_root = Path("/.") # Path to models or base_name_dir of models
-
-#%% ----- Load models -----
+model_root = Path(__file__).parent / "models"
 if base_name_dir is not None:
     model_root = model_root / base_name_dir
+#%% ----- Load models -----
 
 model_dirs = np.array(list(model_root.glob(f"{model_glob}/*.tf")))
 model_names = np.array([m.parent.name for m in model_dirs])
