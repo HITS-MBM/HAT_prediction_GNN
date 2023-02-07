@@ -1,3 +1,4 @@
+from __future__ import annotations
 import tensorflow as tf
 from tensorflow.python.data.ops.dataset_ops import Dataset
 import numpy as np
@@ -50,15 +51,6 @@ def _preproc_pdb(pdbs):
     radical_node_index = tf.convert_to_tensor(((0, 1),), tf.int64)  # shape=(1,2)
     radical_edge_index = tf.convert_to_tensor(((0,),), tf.int64)  # shape=(1,1)
     edge_dist = tf.convert_to_tensor(((dist[0, 1],),), tf.float32)  # shape=(1,1)
-
-    # atms = np.array([0, 1, 8, 8, 7, 6, 6, 6, 6, 6, 1, 1, 1, 1, 1, 1, 1, 1, 8, 8, 8, 7,
-    #    6, 6, 6, 6, 6, 1, 1, 1, 1, 1, 1, 1, 1])
-
-    # # np.save("/hits/fast/mbm/riedmiki/nn/barrier_gnn_out/cache2/tmp1", pos)
-    # # np.save("/hits/fast/mbm/riedmiki/nn/barrier_gnn_out/cache2/tmp2", edge_indices)
-
-    # pos = np.load("/hits/fast/mbm/riedmiki/nn/barrier_gnn_out/cache2/tmp1.npy")
-    # edge_indices= np.load("/hits/fast/mbm/riedmiki/nn/barrier_gnn_out/cache2/tmp2.npy")
 
     return (
         atms,
